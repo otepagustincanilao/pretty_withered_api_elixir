@@ -1,0 +1,7 @@
+defmodule PrettyWitheredApi.Repo.Migrations.CreateShipperAddressesTbl do
+  use Ecto.Migration
+
+  def change do
+
+  end
+end
