@@ -13,9 +13,9 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateUsersTbl do
 	   	add :is_first_time, :boolean
 	   	add :login_attempts, :integer
 	   	######
-	   	add :deactivate_date, :datetime
+	   	add :deactivate_date, :utc_datetime
 	   	add :deactivate_remarks, :text
-	   	add :reactivate_date, :datetime
+	   	add :reactivate_date, :utc_datetime
 	   	add :reactivate_remarks, :text
 	    timestamps()
 	  end

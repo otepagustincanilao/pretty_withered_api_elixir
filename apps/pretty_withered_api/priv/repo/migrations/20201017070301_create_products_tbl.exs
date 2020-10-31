@@ -8,7 +8,7 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateProductsTbl do
 			add :model, :string, size: 40
 			add :name, :string
 			add :description, :text
-			add :categories, {:array, :string}
+			add :category_or_subcat, {:array, :string}
 			add :taggings, {:array, :string}
 			add :current_price, :decimal
 			add :original_price, :decimal

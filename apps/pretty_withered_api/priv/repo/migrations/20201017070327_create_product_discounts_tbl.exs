@@ -9,8 +9,8 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateProductDiscountsTbl do
 			add :type, :string
 			add :value, :decimal
 			####
-			add :effective_date, :datetime
-			add :expiry_date, :datetime
+			add :effective_date, :utc_datetime
+			add :expiry_date, :utc_datetime
 
 			timestamps()
 		end
