@@ -4,6 +4,7 @@ defmodule PrettyWitheredApiWeb.Graphql.Schemas.BrandTypes do
   @moduledoc false
 
   alias PrettyWitheredApi.Contexts.UtilityContext
+  alias PrettyWitheredApiWeb.Graphql.Resolvers.Brand
 
   @desc "Brand detail"
   object :brand do

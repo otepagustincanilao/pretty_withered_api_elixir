@@ -9,6 +9,7 @@ defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Brand do
   alias PrettyWitheredApi.Contexts.BrandContext
 
   def get_brands(_root, params, _info) do
+    raise params
     :search
     |> BrandContext.validate_params(params, :graphql)
     # |> VC.valid_changeset()

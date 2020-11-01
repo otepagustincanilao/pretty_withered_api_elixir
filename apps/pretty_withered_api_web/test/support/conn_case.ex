@@ -22,7 +22,7 @@ defmodule PrettyWitheredApiWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import PrettyWitheredApiWeb.ConnCase
+      import PrettyWitheredApi.SchemaCase
 
       alias PrettyWitheredApiWeb.Router.Helpers, as: Routes
 
