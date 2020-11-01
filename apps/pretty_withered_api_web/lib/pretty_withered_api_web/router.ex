@@ -20,9 +20,33 @@ defmodule PrettyWitheredApiWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PrettyWitheredApiWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PrettyWitheredApiWeb do
+    pipe_through :api
+
+    scope "/v1", V1 do
+
+      scope "/brands" do
+        post "/create", ProductController, :create
+      end
+
+      scope "/products" do
+        post "/create", ProductController, :create
+      end
+
+      scope "/customers" do
+        post "/create", CustomerController, :create
+      end
+
+      scope "/orders" do
+        post "/create", OrderController, :create
+      end
+
+      scope "/categories" do
+        post "/create", CategoriesController, :create
+      end
+
+    end
+  end
 
   # Enables LiveDashboard only for development
   #

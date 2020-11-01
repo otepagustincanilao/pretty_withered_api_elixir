@@ -39,7 +39,13 @@ defmodule PrettyWitheredApi.MixProject do
       {:phoenix_pubsub, "~> 2.0"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
-      {:jason, "~> 1.0"}
+      {:jason, "~> 1.0"},
+      {:httpoison, "~> 1.4"},
+      {:poison, "~> 2.1.0"},
+      ##
+      {:ex_machina, "~> 2.4.0", only: :test},
+      {:exvcr, "~> 0.11", only: :test},
+      {:faker, "~> 0.16", only: :test}
     ]
   end
 
