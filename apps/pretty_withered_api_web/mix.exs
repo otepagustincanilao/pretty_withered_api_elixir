@@ -9,7 +9,7 @@ defmodule PrettyWitheredApiWeb.MixProject do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.7",
+      elixir: "~> 1.11.1",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -24,7 +24,7 @@ defmodule PrettyWitheredApiWeb.MixProject do
   def application do
     [
       mod: {PrettyWitheredApiWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :absinthe, :inflex]
     ]
   end
 
@@ -52,6 +52,10 @@ defmodule PrettyWitheredApiWeb.MixProject do
       # {:absinthe_ecto, "~> 0.1.0"}, ## depreciated as per online source
       {:absinthe_plug, "~> 1.5.0"},
       {:absinthe, "~> 1.5.0"},
+      {:inflex, "~> 1.10.0"},
+      {:ueberauth, "~> 0.6"},
+      {:ueberauth_google, "~> 0.8"},
+      {:guardian, "~> 2.1"}
     ]
   end
 

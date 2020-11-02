@@ -16,7 +16,7 @@ config :pretty_withered_api, PrettyWitheredApi.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :pretty_withered_api_web, PrettyWitheredApiWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 9000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -74,3 +74,18 @@ config :phoenix, :plug_init_mode, :runtime
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+config :ueberauth, Ueberauth,
+  providers: [
+    google: { Ueberauth.Strategy.Google, [] },
+    facebook: { Ueberauth.Strategy.Facebook, [] },
+    github: { Ueberauth.Strategy.Github, [] }
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+  client_id: System.get_env("GOOGLE_CLIENT_ID"),
+  client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
+
+config :pretty_withered_api_web, PrettyWitheredApiWeb.Plugs.Guardian,
+  issuer: "prettyw",
+  secret_key: "KLbYSAOnFH1G5PtKGmWvl1S7runZngrvWkNY5o3swW5G7PuLGhv0Mpdl+P1Vw+yT" 

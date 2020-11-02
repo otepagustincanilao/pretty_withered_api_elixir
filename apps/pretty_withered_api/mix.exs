@@ -9,7 +9,7 @@ defmodule PrettyWitheredApi.MixProject do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.7",
+      elixir: "~> 1.11.1",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -23,7 +23,7 @@ defmodule PrettyWitheredApi.MixProject do
   def application do
     [
       mod: {PrettyWitheredApi.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :absinthe, :inflex]
     ]
   end
 
@@ -45,7 +45,9 @@ defmodule PrettyWitheredApi.MixProject do
       ##
       {:ex_machina, "~> 2.4.0", only: :test},
       {:exvcr, "~> 0.11", only: :test},
-      {:faker, "~> 0.16", only: :test}
+      {:faker, "~> 0.16", only: :test},
+      {:argon2_elixir, "~> 2.3"},
+      {:guardian, "~> 2.0"}
     ]
   end
 

@@ -13,6 +13,19 @@ defmodule PrettyWitheredApiWeb.Router do
     plug :accepts, ["json"]
   end
 
+  # pipeline :auth_api do
+  #   plug :accepts, ["json", "json-api"]
+  #   plug Auth.Guardian.AuthPipeline.JSON
+  # end
+
+  pipeline :auth_api do
+    plug :accepts, ["json", "json-api"]
+    plug Auth.Guardian.AuthPipeline.JSON
+
+    plug Guardian.Plug.EnsureAuthenticated,
+      handler: Auth.EnsureAuthenticated
+  end
+
   scope "/", PrettyWitheredApiWeb do
     pipe_through :browser
 
@@ -35,12 +48,16 @@ defmodule PrettyWitheredApiWeb.Router do
 
   # Other scopes may use custom stacks.
   scope "/api", PrettyWitheredApiWeb do
-    pipe_through :api
+    pipe_through :auth_api
 
     scope "/v1", V1 do
 
+      scope "/auth" do
+        get "/:provider", AuthController, :request
+      end
+
       scope "/brands" do
-        post "/create", ProductController, :create
+        post "/create", BrandController, :create
       end
 
       scope "/products" do

@@ -2,7 +2,7 @@ defmodule PrettyWitheredApiWeb.Graphql.BrandTest do
   use PrettyWitheredApiWeb.ConnCase
 
   import PrettyWitheredApi.Factory
-  alias PrettyWitheredApi.Repo
+  # alias PrettyWitheredApi.Repo
   # alias PrettyWitheredApi.Schemas.Brand
 
   @moduledoc false
