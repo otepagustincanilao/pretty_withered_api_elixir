@@ -86,6 +86,16 @@ config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: System.get_env("GOOGLE_CLIENT_ID"),
   client_secret: System.get_env("GOOGLE_CLIENT_SECRET")
 
+config :ueberauth, Ueberauth,
+  providers: [
+    identity: {Ueberauth.Strategy.Identity, [
+      param_nesting: "users",
+      request_path: "/create",
+      callback_path: "/create",
+      callback_methods: ["POST"]
+    ]}
+  ]
+
 config :pretty_withered_api_web, PrettyWitheredApiWeb.Plugs.Guardian,
   issuer: "prettyw",
   secret_key: "KLbYSAOnFH1G5PtKGmWvl1S7runZngrvWkNY5o3swW5G7PuLGhv0Mpdl+P1Vw+yT" 

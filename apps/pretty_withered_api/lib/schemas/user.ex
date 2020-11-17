@@ -11,8 +11,8 @@ defmodule PrettyWitheredApi.Schemas.User do
     field :hashed_password, :string
     field :email, :string
     field :mobile, :string
-    field :is_verified, :boolean
-    field :is_first_time, :boolean
+    field :is_verified, :boolean, default: false
+    field :is_first_time, :boolean, default: true
     field :login_attempts, :integer
 
     field :deactivate_date, :utc_datetime
@@ -39,5 +39,7 @@ defmodule PrettyWitheredApi.Schemas.User do
       :reactivate_date,
       :reactivate_remarks
     ])
+    |> unique_constraint(:username)
+    |> unique_constraint(:email)
   end
 end

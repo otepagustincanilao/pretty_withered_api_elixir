@@ -10,6 +10,17 @@ defmodule PrettyWitheredApi.Contexts.UtilityContext do
   alias Ecto.Adapters.SQL
   alias Ecto.Changeset
 
+  defp transform_message(message, key), do: %{"#{key}" => "#{message}"}
+  def transform_error_message(changeset, module \\ "") do
+    errors = Enum.map(changeset.errors, fn({key, {message, _}}) ->
+       transform_message(message, "#{module}#{key}")
+    end)
+
+    Enum.reduce(errors, fn(head, tail) ->
+      Map.merge(head, tail)
+    end)
+  end
+
   def handle_errors(fun) do
     fn source, args, info ->
       case Resolution.call(fun, source, args, info) do
@@ -48,5 +59,7 @@ defmodule PrettyWitheredApi.Contexts.UtilityContext do
 
   def transform_error_message_graphql(field_name, message),
     do: %{message: "#{message}", field: field_name}
+
+  def is_valid_changeset?(changeset), do: {changeset.valid?, changeset}
 
 end

@@ -20,6 +20,9 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateUsersTbl do
 	    timestamps()
 	  end
 
+	  create unique_index(:users, [:email])
+	  create unique_index(:users, [:username])
+
 	end
 
 	def down do

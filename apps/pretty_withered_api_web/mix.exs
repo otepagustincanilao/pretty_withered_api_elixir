@@ -54,6 +54,7 @@ defmodule PrettyWitheredApiWeb.MixProject do
       {:absinthe, "~> 1.5.0"},
       {:inflex, "~> 1.10.0"},
       {:ueberauth, "~> 0.6"},
+      {:ueberauth_identity, "~> 0.3.0"},
       {:ueberauth_google, "~> 0.8"},
       {:guardian, "~> 2.1"}
     ]
