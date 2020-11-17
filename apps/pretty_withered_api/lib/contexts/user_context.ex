@@ -81,8 +81,14 @@ defmodule PrettyWitheredApi.Contexts.UserContext do
   
   def insert_user_creds(valid_changes) do
     %User{}
-    |> User.changeset(valid_changes)
+    |> User.changeset(valid_changes |> Map.put(:status, "P") |> Map.put(:login_attempts, 0))
     |> Repo.insert()
+  end
+
+  def update_user(user_struct, params) do
+    user_struct
+    |> User.changeset(params)
+    |> Repo.update()
   end
 
 end

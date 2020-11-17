@@ -21,6 +21,8 @@ defmodule PrettyWitheredApi.Schemas.User do
     field :reactivate_date, :utc_datetime
     field :reactivate_remarks, :string
 
+    field :status, :string ## asof 11/17/2020 10pm
+
     timestamps()
   end
 
@@ -37,7 +39,8 @@ defmodule PrettyWitheredApi.Schemas.User do
       :deactivate_date,
       :deactivate_remarks,
       :reactivate_date,
-      :reactivate_remarks
+      :reactivate_remarks,
+      :status
     ])
     |> unique_constraint(:username)
     |> unique_constraint(:email)

@@ -17,6 +17,8 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateUsersTbl do
 	   	add :deactivate_remarks, :text
 	   	add :reactivate_date, :utc_datetime
 	   	add :reactivate_remarks, :text
+
+	   	add :status, :string ## asof 11/17/2020 10pm
 	    timestamps()
 	  end
 

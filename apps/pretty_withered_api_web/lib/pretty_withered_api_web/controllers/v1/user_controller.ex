@@ -1,10 +1,15 @@
 defmodule PrettyWitheredApiWeb.V1.UserController do
   use PrettyWitheredApiWeb, :controller
 
-  alias PrettyWitheredApiWeb.V1.UserView
-  alias PrettyWitheredApiWeb.ErrorView
-  alias PrettyWitheredApi.Contexts.UserContext
-  alias PrettyWitheredApi.Contexts.UtilityContext
+  alias PrettyWitheredApiWeb.{
+    V1.UserView,
+    ErrorView
+  }
+
+  alias PrettyWitheredApi.Contexts.{
+    UserContext,
+    UtilityContext
+  }
 
   def create(conn, params) do
     case UserContext.casting_and_validation(params) do

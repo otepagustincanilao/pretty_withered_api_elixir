@@ -48,6 +48,7 @@ defmodule PrettyWitheredApiWeb.Router do
     scope "/v1", V1 do
 
       scope "/auth" do
+        post "/login", AuthController, :login
         get "/:provider", AuthController, :request
       end
 
