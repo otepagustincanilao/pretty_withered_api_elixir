@@ -13,11 +13,6 @@ defmodule PrettyWitheredApiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  # pipeline :auth_api do
-  #   plug :accepts, ["json", "json-api"]
-  #   plug Auth.Guardian.AuthPipeline.JSON
-  # end
-
   pipeline :auth_api do
     plug :accepts, ["json", "json-api"]
     plug Auth.Guardian.AuthPipeline.JSON
@@ -47,13 +42,19 @@ defmodule PrettyWitheredApiWeb.Router do
   scope "/api", PrettyWitheredApiWeb do
     scope "/v1", V1 do
 
-      scope "/auth" do
+      ## to follow oauth
+      scope "/oauth" do
         post "/login", AuthController, :login
         get "/:provider", AuthController, :request
       end
 
       scope "/users" do
-        post "/create", UserController, :create
+        scope "/no-confirmation-needed" do
+          post "/create", UserController, :create_without_email_confirmation
+        end
+    
+        post "/create", UserController, :create    
+        get "/verify-link", UserController, :create    
       end
 
       pipe_through :auth_api

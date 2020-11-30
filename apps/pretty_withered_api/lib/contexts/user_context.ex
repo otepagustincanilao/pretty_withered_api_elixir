@@ -50,7 +50,7 @@ defmodule PrettyWitheredApi.Contexts.UserContext do
     
     if Enum.empty?(password_error?) do
       changeset
-      |> Changeset.put_change(:hashed_password, :base64.encode(password))
+      |> Changeset.put_change(:hashed_password, Argon2.hash_pwd_salt(password))
     else
       changeset
     end
@@ -89,6 +89,10 @@ defmodule PrettyWitheredApi.Contexts.UserContext do
     user_struct
     |> User.changeset(params)
     |> Repo.update()
+  end
+
+  def send_email(user) do
+    
   end
 
 end

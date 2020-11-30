@@ -62,4 +62,13 @@ defmodule PrettyWitheredApi.Contexts.UtilityContext do
 
   def is_valid_changeset?(changeset), do: {changeset.valid?, changeset}
 
+  def add_duration_to_date(datetime, duration) do
+    # string_datetime = 
+      datetime
+      |> Timex.add(Timex.Duration.from_days(1))
+      |> DateTime.to_string()
+
+    # "#{string_datetime} | UTC"
+  end
+
 end
