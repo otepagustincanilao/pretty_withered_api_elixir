@@ -19,6 +19,7 @@ defmodule PrettyWitheredApi.Schemas.Product do
     field :is_featured_item, :boolean
 
     belongs_to(:brand, PrettyWitheredApi.Schemas.Brand, references: :code, type: :string, foreign_key: :brand_code)
+    belongs_to(:collection, PrettyWitheredApi.Schemas.Collection, references: :code, type: :string, foreign_key: :collection_code)
 
     timestamps()
   end
