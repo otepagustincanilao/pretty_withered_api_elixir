@@ -48,7 +48,6 @@ defmodule PrettyWitheredApi.MixProject do
       {:faker, "~> 0.16", only: :test},
       {:argon2_elixir, "~> 2.3"},
       {:guardian, "~> 2.0"},
-      {:argon2_elixir, "~> 2.3.0"}
     ]
   end
 

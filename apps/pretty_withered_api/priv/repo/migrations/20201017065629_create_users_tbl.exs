@@ -9,8 +9,8 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateUsersTbl do
 	   	add :email, :string
 	   	add :mobile, :string
 	   	#####
-	   	add :is_verified, :boolean
-	   	add :is_first_time, :boolean
+	   	add :is_verified, :boolean, default: false
+	   	add :is_first_time, :boolean, default: true
 	   	add :login_attempts, :integer
 	   	######
 	   	add :deactivate_date, :utc_datetime
