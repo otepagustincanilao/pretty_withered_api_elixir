@@ -1,4 +1,4 @@
-defmodule PrettyWitheredApi.Contexts.Users.Create do
+defmodule PrettyWitheredApi.Contexts.User.Create do
   @moduledoc false
 
   alias Ecto.Changeset

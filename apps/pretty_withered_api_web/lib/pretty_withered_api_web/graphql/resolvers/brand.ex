@@ -6,7 +6,7 @@ defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Brand do
   # @type error_output :: {:error, binary}
   # @type plugin_output :: {:plugin, Absinthe.Plugin.t(), term}
 
-  alias PrettyWitheredApi.Contexts.Brands.Search, as: BS
+  alias PrettyWitheredApi.Contexts.Brand.Search, as: BS
 
   def get_brands(_root, params, _info) do
     raise params

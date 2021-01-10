@@ -8,7 +8,7 @@ defmodule PrettyWitheredApiWeb.V1.UserController do
     ErrorView
   }
 
-  alias PrettyWitheredApi.Contexts.Users.Create, as: UC
+  alias PrettyWitheredApi.Contexts.User.Create, as: UC
   alias PrettyWitheredApi.Contexts.UtilityContext
 
 
