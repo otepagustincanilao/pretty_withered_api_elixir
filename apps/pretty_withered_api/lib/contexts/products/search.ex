@@ -1,4 +1,4 @@
-defmodule PrettyWitheredApi.Contexts.BrandContext do
+defmodule PrettyWitheredApi.Contexts.ProductContext do
   @moduledoc false
 
   alias Ecto.Changeset

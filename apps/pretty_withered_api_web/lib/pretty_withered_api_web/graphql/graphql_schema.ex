@@ -11,7 +11,7 @@ defmodule PrettyWitheredApiWeb.Graphql.Schema do
   end
 
   mutation do
-    # import_fields(:brand_mutations)
+    import_fields(:brand_mutations)
   end
 
 end
