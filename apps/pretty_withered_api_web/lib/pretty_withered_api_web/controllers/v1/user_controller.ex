@@ -8,13 +8,12 @@ defmodule PrettyWitheredApiWeb.V1.UserController do
     ErrorView
   }
 
-  alias PrettyWitheredApi.Contexts.{
-    UserContext,
-    UtilityContext
-  }
+  alias PrettyWitheredApi.Contexts.User.Create, as: UC
+  alias PrettyWitheredApi.Contexts.UtilityContext
+
 
   def create_without_email_confirmation(conn, params) do
-    case UserContext.casting_and_validation(params) do
+    case UC.casting_and_validation(params) do
     	{:false, changeset} ->
     		conn
 		    |> put_status(400)
@@ -23,7 +22,7 @@ defmodule PrettyWitheredApiWeb.V1.UserController do
 
     	{true, %{changes: changes}} -> 
     		{:ok, user} = 
-          changes |> UserContext.insert_user_creds()
+          changes |> UC.insert_user_creds()
 
         updated_conn = ## auto login
           conn
@@ -42,7 +41,7 @@ defmodule PrettyWitheredApiWeb.V1.UserController do
   end
 
   def create(conn, params) do
-    case UserContext.casting_and_validation(params) do
+    case UC.casting_and_validation(params) do
       {:false, changeset} ->
         conn
         |> put_status(400)
@@ -52,8 +51,8 @@ defmodule PrettyWitheredApiWeb.V1.UserController do
       {true, %{changes: changes}} -> 
         {:ok, user} = 
           changes 
-          |> UserContext.insert_user_creds()
-          |> UserContext.send_email()
+          |> UC.insert_user_creds()
+          |> UC.send_email()
 
         conn
         |> put_status(200)

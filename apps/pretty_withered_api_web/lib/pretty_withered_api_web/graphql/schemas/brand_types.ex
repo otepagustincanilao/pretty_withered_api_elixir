@@ -93,4 +93,45 @@ defmodule PrettyWitheredApiWeb.Graphql.Schemas.BrandTypes do
     end
   end
 
+   ####################################### Start of Mutations ###################################################
+
+  @desc "Brand Mutations"
+  object :brand_mutations do
+    @desc "Create Brand"
+    field :create_brand, :brand do
+      #################################
+      @desc """
+      - Brand Code
+        - Required
+        - Possible error messages
+          - Enter code
+          - Brand Code only accepts alphanumeric value with or without ('-') (',') ('_') 
+          - Brand Code only accepts alphanumeric up to 40 characters
+          - Brand code already exist
+      """
+      arg(:code, non_null(:string))
+      ##################################
+      @desc """
+      - Brand Name
+        - Required
+        - Possible error messages
+          - Enter name
+          - Name only accepts alphanumeric up to 150 characters
+      """
+      arg(:name, non_null(:string))
+      ##################################
+      @desc """
+      - Brand Description
+        - Optional
+      """
+      arg(:description, :string)
+     ####################################
+
+      resolve UtilityContext.handle_errors(&Brand.create/3)
+    end
+
+  end
+
+  ####################################### End of Mutations ###################################################
+
 end
