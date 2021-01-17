@@ -7,6 +7,7 @@ defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Brand do
   # @type plugin_output :: {:plugin, Absinthe.Plugin.t(), term}
 
   alias PrettyWitheredApi.Contexts.Brand.Search, as: BS
+  alias PrettyWitheredApi.Contexts.Brand.Create, as: BC
 
   def get_brands(_root, params, _info) do
     raise params
@@ -25,6 +26,13 @@ defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Brand do
     # |> return_result()
   end
 
+  def create(_root, params, resolution) do
+    params
+    |> BC.validate_params(:graphql_mutation)
+    |> BC.create_brand(resolution)
+    |> return_result()
+  end
+
   defp return_result({:error, changeset}), do: {:error, changeset}
-  defp return_result(result), do: {:ok, result}
+  defp return_result({:ok, result}), do: {:ok, result}
 end

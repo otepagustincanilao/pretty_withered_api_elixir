@@ -1,7 +1,7 @@
 defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Product do
   @moduledoc false
 
-  alias PrettyWitheredApi.Contexts.ProductContext
+  alias PrettyWitheredApi.Contexts.Product.Create
 
   def get_products(_root, params, _info) do
     raise params
@@ -14,7 +14,15 @@ defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Product do
 
   def get_product(_root, params, _info) do
     :view
-    |> BrandContext.validate_params(params)
+    |> ProductContext.validate_params(params)
+    # |> VC.valid_changeset()
+    # |> BC.get_benefit(:view, :graphql)
+    # |> return_result()
+  end
+
+  def create(_root, params, _info) do
+    params
+    |> Create.validate_params(:graphql_mutation)
     # |> VC.valid_changeset()
     # |> BC.get_benefit(:view, :graphql)
     # |> return_result()

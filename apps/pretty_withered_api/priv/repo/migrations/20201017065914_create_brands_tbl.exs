@@ -3,8 +3,8 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateBrandsTbl do
 
   	def up do
 		create table(:brands, primary_key: false) do
-			add :code, :string, size: 20, primary_key: true
-			add :name, :string, size: 60
+			add :code, :string, size: 40, primary_key: true
+			add :name, :string, size: 150
 			add :description, :text
 
 			timestamps()
