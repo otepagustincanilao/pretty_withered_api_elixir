@@ -3,10 +3,10 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateCategoriesTbl do
 
 	def up do
 	  create table(:categories, primary_key: false) do
-	    add :code, :string, size: 20, primary_key: true
-	    add :name, :string, size: 60
+	    add :code, :string, size: 60, primary_key: true
+	    add :name, :string, size: 150
 	    add :description, :text
-	   	add :slug, :string, size: 60
+	   	add :slug, :string, size: 150
 
 	    timestamps()
 	  end

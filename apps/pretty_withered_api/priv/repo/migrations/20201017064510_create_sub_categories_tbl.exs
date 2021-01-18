@@ -5,9 +5,9 @@ defmodule PrettyWitheredApi.Repo.Migrations.CreateSubCategoriesTbl do
 	  create table(:sub_categories, primary_key: false) do
 	    add :id, :binary_id, primary_key: true
 	    add :category_code, references(:categories, column: :code, type: :string, on_delete: :delete_all)
-	    add :name, :string, size: 60
+	    add :name, :string, size: 100
 	    add :description, :text
-	    add :slug, :string, size: 60
+	    add :slug, :string, size: 100
 
 	    timestamps()
 	  end

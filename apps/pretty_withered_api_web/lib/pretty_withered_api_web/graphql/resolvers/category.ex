@@ -1,4 +1,4 @@
-defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Brand do
+defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Category do
   @moduledoc false
 
   # @type resolver_output :: ok_output | error_output | plugin_output
@@ -6,21 +6,20 @@ defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Brand do
   # @type error_output :: {:error, binary}
   # @type plugin_output :: {:plugin, Absinthe.Plugin.t(), term}
 
-  alias PrettyWitheredApi.Contexts.Brand.Search, as: CBS
-  alias PrettyWitheredApi.Contexts.Brand.Create, as: CBC
+  alias PrettyWitheredApi.Contexts.Category.Search, as: CCS
+  alias PrettyWitheredApi.Contexts.Category.Create, as: CCC
 
-  def get_brands(_root, params, _info) do
-    raise params
-    :search
-    |> CBS.validate_params(params, :graphql)
+  def get_categories(_root, params, _info) do
+    params
+    |> CCS.validate_params(params, :graphql_query)
     # |> VC.valid_changeset()
     # |> BC.get_benefits(:search, :graphql)
     # |> return_result()
   end
 
-  def get_brand(_root, params, _info) do
+  def get_category(_root, params, _info) do
     :view
-    |> CBS.validate_params(params)
+    |> CCC.validate_params(params)
     # |> VC.valid_changeset()
     # |> BC.get_benefit(:view, :graphql)
     # |> return_result()
@@ -28,8 +27,8 @@ defmodule PrettyWitheredApiWeb.Graphql.Resolvers.Brand do
 
   def create(_root, params, resolution) do
     params
-    |> CBC.validate_params(:graphql_mutation)
-    |> CBC.create_brand(resolution)
+    |> CCC.validate_params(:graphql_mutation)
+    |> CCC.create_brand(resolution)
     |> return_result()
   end
 
