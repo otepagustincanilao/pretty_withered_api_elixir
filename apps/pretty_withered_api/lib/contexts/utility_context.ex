@@ -71,4 +71,27 @@ defmodule PrettyWitheredApi.Contexts.UtilityContext do
     # "#{string_datetime} | UTC"
   end
 
+  def to_atom_map(nil), do: []
+  def to_atom_map(datas) do
+    datas
+    |> Enum.into([], &Enum.into(&1, %{}, fn {k, v} -> {String.to_atom(k), v} end))
+  end
+
+  def convert_str_to_atom(str) do
+    String.to_existing_atom(str)
+
+    rescue
+      _ ->
+        String.to_atom(str)
+  end
+
+  def sorting_and_order_by(query, field, "asc") do
+    field = convert_str_to_atom(field)
+    query |> order_by([c], asc: field(c, ^field))
+  end
+  def sorting_and_order_by(query, field, "desc") do
+    field = convert_str_to_atom(field)
+    query |> order_by([c], desc: field(c, ^field))
+  end
+
 end

@@ -4,7 +4,7 @@ defmodule PrettyWitheredApi.Contexts.Category.Create do
   import Ecto.Query
 
   alias Ecto.Changeset
-  alias PrettyWitheredApi.Schemas.Brand
+  alias PrettyWitheredApi.Schemas.Category
   alias PrettyWitheredApi.Repo
 
   def is_valid_changeset?(%{valid?: true} = changeset), do: changeset.changes
@@ -14,7 +14,8 @@ defmodule PrettyWitheredApi.Contexts.Category.Create do
     fields = %{
       code: :string,
       name: :string,
-      description: :string
+      description: :string,
+      slug: :string
     }
 
     {%{}, fields}
@@ -25,15 +26,15 @@ defmodule PrettyWitheredApi.Contexts.Category.Create do
     |> is_valid_changeset?()
   end
 
-  def create_brand({:error, changeset}, _resolution), do: {:error, changeset}
-  def create_brand(params, resolution) do
-    %Brand{}
-    |> Brand.changeset(params)
+  def create_category({:error, changeset}, _resolution), do: {:error, changeset}
+  def create_category(params, resolution) do
+    %Category{}
+    |> Category.changeset(params)
     |> Repo.insert()
 
     rescue
       Ecto.ConstraintError ->
-        {:error, %Brand{} |> Brand.changeset(params) |> Changeset.add_error(:code, "Category code already exist!")}
+        {:error, %Category{} |> Category.changeset(params) |> Changeset.add_error(:code, "Category code already exist!")}
   end
   
 end
